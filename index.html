@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+</head>
+<style>
+.clock{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    height: 100vh;
+}
+*{
+    margin: 0;
+}
+body{
+    background-color: black;
+}
+.clock> h1,h5{
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.clock>h1{
+    font-size: 100px;
+    color: white;
+}
+.clock>h5{
+    font-size: 60px;
+}
+</style>
+<body>
+   <div class="clock">
+    <h1 id="timeElement">Loading...</h1>
+
+    <h5 id="dateElement">Loading...</h5>
+   </div>
+   <script>
+    let time=document.getElementById("timeElement");
+
+    let date=document.getElementById("dateElement");
+    const clockHandle=()=>{
+        let currentDate=new Date();
+
+
+        let hour =currentDate.getHours()-12;
+        hour=(hour<10)?"0"+hour:hour;
+
+        let min=currentDate.getMinutes();
+        min=(min<10)?"0"+min:min;
+
+        let sec=currentDate.getSeconds();
+        sec=(sec<10)?"0"+sec:sec;
+
+        time.innerHTML=`${hour}:${min}:${sec}`
+
+        //date details
+        let day=currentDate.getDate();
+        let month=currentDate.getMonth();
+        month=(month<10)?"0"+month:month;
+        let year=currentDate.getFullYear();
+
+        date.innerHTML=`${day}/${month}/${year}`
+    }
+    //calling the function
+    setInterval(clockHandle,1000);
+   </script>
+</body>
+</html>
